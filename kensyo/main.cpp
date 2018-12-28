@@ -4,8 +4,29 @@
 #include <cassert>
 #include <iostream>
 
+class Dummy
+{
+    public:
+        int con = 0;
+        int copy = 0;
+        Dummy()
+        {
+            con += 1;        
+        }
+
+        Dummy(const Dummy& d)
+        {
+            copy += 1;
+        }
+
+        int getCopy()
+        {
+            return copy;
+        }
+};
+
 template <typename T>
-void DequeList<T>::pushback(const std::list<T> obj)
+void DequeList<T>::pushback(const std::list<T>& obj)
 {
     size_t dequePos;
     size_t listPos;
@@ -42,6 +63,7 @@ T DequeList<T>::get()
 }
 
 template class DequeList<double>;
+template class DequeList<Dummy>;
 
 int main(int argc, char const *argv[])
 {
